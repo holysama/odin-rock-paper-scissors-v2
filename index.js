@@ -1,10 +1,10 @@
 //Computer choice function
 function getComputerChoice() {
-    let computerChoice = Math.floor(Math.random() * 3);
+    let randomChoice = Math.floor(Math.random() * 3);
 
-    if (computerChoice === 0) {
+    if (randomChoice === 0) {
         return "Rock";
-    } else if (computerChoice === 1) {
+    } else if (randomChoice === 1) {
         return "Paper";
     } else {
         return "Scissors";
@@ -15,22 +15,23 @@ let computerResult = getComputerChoice();
 
 
 //Human choice function
-function getHumanChoice(humanChoice) {
+function getHumanChoice(userChoice) {
     
-    if (humanChoice === "Rock") {
+    if (userChoice === "Rock") {
         return "Rock";
-    } else if (humanChoice === "Paper") {
+    } else if (userChoice === "Paper") {
         return "Paper";
     } else {
         return "Scissors";
     }
 }
 
-let getChoice = prompt("What did you choose?");
+let getUserChoice = prompt("What did you choose?");
 
-let humanResult = getHumanChoice(getChoice);
+let humanResult = getHumanChoice(getUserChoice);
 
 //Player score variables
 let humanScore = 0;
 let computerScore = 0;
 
+//Single round of Rock, Paper Scissors logic
