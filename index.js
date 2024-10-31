@@ -30,3 +30,7 @@ let getChoice = prompt("What did you choose?");
 
 let humanResult = getHumanChoice(getChoice);
 
+//Player score variables
+let humanScore = 0;
+let computerScore = 0;
+
