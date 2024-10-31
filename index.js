@@ -12,3 +12,21 @@ function getComputerChoice() {
 }
 
 let computerResult = getComputerChoice();
+
+
+//Human choice function
+function getHumanChoice(humanChoice) {
+    
+    if (humanChoice === "Rock") {
+        return "Rock";
+    } else if (humanChoice === "Paper") {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
+}
+
+let getChoice = prompt("What did you choose?");
+
+let humanResult = getHumanChoice(getChoice);
+
