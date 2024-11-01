@@ -13,13 +13,18 @@ function getComputerChoice() {
 
 //Human choice function
 function getHumanChoice(userChoice) {
-    
+
     if (userChoice === "Rock") {
         return "Rock";
     } else if (userChoice === "Paper") {
         return "Paper";
-    } else {
+    } else if (userChoice === "Scissors") {
         return "Scissors";
+    } else if (userChoice === null || userChoice === "") {
+        userChoice = "";
+        return userChoice;
+    } else { 
+        return userChoice; 
     }
 }
 
@@ -36,6 +41,8 @@ function playRound(computerChoice, humanChoice) {
 
     if (humanChoice === computerChoice) {
         console.log("It's a tie!");
+    } else if (humanChoice !== "Rock" && humanChoice !== "Paper" && humanChoice !== "Scissors") {
+        console.log("Try again, You've cancelled or the option is not available");
     } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
         console.log("User wins! Rock beats Scissors");
     } else if (humanChoice === "Paper" && computerChoice === "Rock") {
