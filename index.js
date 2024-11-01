@@ -11,9 +11,6 @@ function getComputerChoice() {
     }
 }
 
-let computerResult = getComputerChoice();
-
-
 //Human choice function
 function getHumanChoice(userChoice) {
     
@@ -27,8 +24,6 @@ function getHumanChoice(userChoice) {
 }
 
 let getUserChoice = prompt("What did you choose?");
-
-let humanResult = getHumanChoice(getUserChoice);
 
 //Player score variables
 let humanScore = 0;
