@@ -30,7 +30,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 //Single round of Rock, Paper Scissors logic
-function playRound(humanChoice, computerChoice) {
+function playRound(computerChoice, humanChoice) {
     humanChoice = humanChoice.slice(0, 1).toUpperCase() + humanChoice.slice(1).toLowerCase();
     computerChoice = computerChoice.slice(0, 1).toUpperCase() + computerChoice.slice(1).toLowerCase();
 
@@ -53,5 +53,8 @@ function playRound(humanChoice, computerChoice) {
 
 const computerSelection = getComputerChoice();
 const humanSelection = getHumanChoice(getUserChoice);
+
+console.log(computerSelection);
+console.log(humanSelection);
 
 playRound(computerSelection, humanSelection);
