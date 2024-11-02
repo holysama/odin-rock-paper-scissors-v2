@@ -45,23 +45,32 @@ function playRound(computerChoice, humanChoice) {
         console.log("Try again, You've cancelled or the option is not available");
     } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
         console.log("User wins! Rock beats Scissors");
+        humanScore++;
     } else if (humanChoice === "Paper" && computerChoice === "Rock") {
         console.log("User wins! Paper beats Rock");
+        humanScore++;
     } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
         console.log("User wins! Scissors beats Paper");
+        humanScore++;
     } else if (computerChoice === "Rock" && humanChoice === "Scissors") {
         console.log("Computer wins! Rock beats Scissors");
+        computerScore++;
     } else if (computerChoice === "Paper" && humanChoice === "Rock") {
         console.log("Computer wins! Paper beats Rock");
+        computerScore++;
     } else if (computerChoice === "Scissors" && humanChoice === "Paper") {
         console.log("Computer wins! Scissors beats Paper");
+        computerScore++;
     }
 }
 
 const computerSelection = getComputerChoice();
 const humanSelection = getHumanChoice(getUserChoice);
 
-console.log(computerSelection);
-console.log(humanSelection);
+console.log("Computer chose: " + computerSelection);
+console.log("Human choice : " + humanSelection);
 
 playRound(computerSelection, humanSelection);
+
+console.log("Computer's score: " + computerScore);
+console.log("Human's score: " + humanScore);
