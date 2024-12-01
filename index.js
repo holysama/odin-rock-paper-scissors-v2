@@ -1,87 +1,96 @@
-//Computer choice function
 function getComputerChoice() {
-    let randomChoice = Math.floor(Math.random() * 3);
-
-    if (randomChoice === 0) {
-        return "Rock";
-    } else if (randomChoice === 1) {
-        return "Paper";
-    } else {
-        return "Scissors";
-    }
+    let rpsArray = ["Rock", "Paper", "Scissors"];
+    return rpsArray[Math.floor(Math.random() * 3)];
 }
 
-//Human choice function
-function getHumanChoice(userChoice) {
+let roundCount = 1;
+let humanScore = 0;
+let computerScore = 0;
 
-    if (userChoice === "Rock") {
-        return "Rock";
-    } else if (userChoice === "Paper") {
-        return "Paper";
-    } else if (userChoice === "Scissors") {
-        return "Scissors";
-    } else if (userChoice === null || userChoice === "") {
-        userChoice = "";
-        return userChoice;
-    } else { 
-        return userChoice; 
+let div = document.querySelector("#mainDiv");
+
+let buttonContainer = document.createElement("div");
+
+let rockButton = document.createElement("button");
+rockButton.textContent = "Rock";
+let paperButton = document.createElement("button");
+paperButton.textContent = "Paper";
+let scissorsButton = document.createElement("button");
+scissorsButton.textContent = "Scissors";
+
+buttonContainer.appendChild(rockButton);
+buttonContainer.appendChild(paperButton);
+buttonContainer.appendChild(scissorsButton);
+
+div.appendChild(buttonContainer);
+
+let roundDiv = document.createElement("div");
+let roundChoiceHuman = document.createElement("div");
+let roundChoiceComputer = document.createElement("div");
+let roundResultDiv = document.createElement("div");
+let roundScore = document.createElement("div");
+let finalWinnerDiv = document.createElement("div");
+
+div.appendChild(roundDiv);
+div.appendChild(roundChoiceHuman);
+div.appendChild(roundChoiceComputer);
+div.appendChild(roundResultDiv);
+div.appendChild(roundScore);
+div.appendChild(finalWinnerDiv);
+
+function playRound(computerChoice, humanChoice) {
+    roundDiv.textContent = `Round: ${roundCount}`;
+    roundChoiceHuman.textContent = `Human chose: ${humanChoice}`;
+    roundChoiceComputer.textContent = `Computer chose: ${computerChoice}`;
+    
+
+    if (humanChoice === computerChoice) {
+        roundResultDiv.textContent = "It's a tie, GGs that was a tight round!";
     }
-}
-
-function playGame() {
-    //Player score variables
-    let humanScore = 0;
-    let computerScore = 0;
-
-    //Single round of Rock, Paper Scissors logic
-    function playRound(computerChoice, humanChoice) {
-        humanChoice = humanChoice.slice(0, 1).toUpperCase() + humanChoice.slice(1).toLowerCase();
-        computerChoice = computerChoice.slice(0, 1).toUpperCase() + computerChoice.slice(1).toLowerCase();
-
-        if (humanChoice === computerChoice) {
-            console.log("It's a tie!");
-        } else if (humanChoice !== "Rock" && humanChoice !== "Paper" && humanChoice !== "Scissors") {
-            console.log("Try again, You've cancelled or the option is not available");
-        } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
-            console.log("User wins! Rock beats Scissors");
-            humanScore++;
-        } else if (humanChoice === "Paper" && computerChoice === "Rock") {
-            console.log("User wins! Paper beats Rock");
-            humanScore++;
-        } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
-            console.log("User wins! Scissors beats Paper");
-            humanScore++;
-        } else if (computerChoice === "Rock" && humanChoice === "Scissors") {
-            console.log("Computer wins! Rock beats Scissors");
-            computerScore++;
-        } else if (computerChoice === "Paper" && humanChoice === "Rock") {
-            console.log("Computer wins! Paper beats Rock");
-            computerScore++;
-        } else if (computerChoice === "Scissors" && humanChoice === "Paper") {
-            console.log("Computer wins! Scissors beats Paper");
-            computerScore++;
-        }
+    else if (
+        (humanChoice === "Rock" && computerChoice === "Scissors") ||
+        (humanChoice === "Paper" && computerChoice === "Rock") ||
+        (humanChoice === "Scissors" && computerChoice === "Paper")) {
+        roundResultDiv.textContent = "The player has won the Round GGs!";
+        humanScore++;
     }
-    for (i = 0; i < 5; i++) {
-        getUserChoice = prompt("What did you choose?")
-
-        const computerSelection = getComputerChoice();
-        const humanSelection = getHumanChoice(getUserChoice);
-
-        console.log("Computer chose: " + computerSelection);
-        console.log("Human choice : " + humanSelection);
-
-        playRound(computerSelection, humanSelection);
-
-        console.log("Computer " + computerScore + " Human " + humanScore);
+    else {
+        roundResultDiv.textContent = "Ouch! The computer won this round!";
+        computerScore++;
     }
     
-    if (humanScore > computerScore) {
-        console.log("Human wins! GGs!");
-    } else if (computerScore > humanScore) {
-        console.log("Computer wins! GGs!");
-    } else {
-        console.log("It's a tie! That was close!")
+
+    roundScore.textContent = `Player ${humanScore} - Computer ${computerScore}`;
+    roundCount++;
+    checkWinner();
+}
+
+function checkWinner() {
+    if (roundCount === 6) {
+        if (humanScore === computerScore) {
+            finalWinnerDiv.textContent = "No winner! It's a tie GGs to both players!";
+        }
+        else if (humanScore > computerScore) {
+            finalWinnerDiv.textContent = "Player Wins! Good Game my guy!";
+        }
+        else {
+            finalWinnerDiv.textContent = "Computer wins! GGs my robot dude!";
+        }
+        roundCount = 1;
+        humanScore = 0;
+        computerScore = 0;
     }
 }
-playGame();
+
+rockButton.addEventListener("click", () => {
+    let computerSelection = getComputerChoice();
+    playRound(computerSelection, "Rock");
+});
+paperButton.addEventListener("click", () => {
+    let computerSelection = getComputerChoice();
+    playRound(computerSelection, "Paper");
+});
+scissorsButton.addEventListener("click", () => {
+    let computerSelection = getComputerChoice();
+    playRound(computerSelection, "Scissors");
+});
